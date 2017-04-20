@@ -1,0 +1,14 @@
+#Goals
+
+Stage 1
+	-Output fire alarm data to text file in .csv
+	-have static email
+	-Webpage accessible from the Pi
+	-use Crontab to run every ~30 second http://www.computerhope.com/unix/ucrontab.htm#examples
+	-Alarm beep
+Stage 2
+	-Custom email
+    -custome emails for each sensor warning
+	-Alarm play music
+    -different tones for each sensor
+  -Accessible from any computer on LAN

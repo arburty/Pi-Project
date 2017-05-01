@@ -11,28 +11,29 @@
 using namespace std;
 
 //individual Gas sensors if set
-int check_smoke_sensors(smoke_sensor s){
+string check_smoke_sensors(smoke_sensor s, ofstream o){
+    string result = "";
     //MQh3
     if(s.MQ3() == 1){
-	cout << "\t-MQ3 sensor is activated" << '\n';
-	return 3;
+	result += "\t-MQ3 sensor is activated\n";
+	o << "3,";
     }
     //MQ5
     if(s.MQ5() == 1){
-	cout << "\t-MQ5 sensor is activated" << '\n';
-	return 5;
+	result += "\t-MQ5 sensor is activated\n";
+	o << "5,";
     }
     //MQ7
     if(s.MQ7() == 1){
-	cout << "\t-MQ7 sensor is activated" << '\n';
-    	return 7;
+	result += "\t-MQ7 sensor is activated\n";
+    	o << "7,";
     }
     //flame
     if(s.flame() == 1){
-    	cout << "\t-Flame detected" << '\n';
-	return 10;
+    	result += "\t-Flame detected\n";
+	o << "9";
     }
-    return 0;
+    return result;
 }
 double get_temp(temp_sensor t){
     return t.get_temp();
@@ -56,13 +57,13 @@ int main(void)
     output << get_temp(sensor_t) << '\n';
     output << "Humidity,";
     output << get_humidity(sensor_t) << '\n';
-    
+    output << "Smoke,";
     //Check smoke sensor;
     if(sensor_s.detection()){
 	cout << "Smoke sensor is activated" << '\n';
-        output << "Smoke,";
-	output << check_smoke_sensors(sensor_s) << '\n';
-    }
+        cout << check_smoke_sensors(sensor_s, output);
+	output << "\n";
+    }else output << "0\n";
     
     output.close();
     cout << " \n";

@@ -11,27 +11,27 @@
 using namespace std;
 
 //individual Gas sensors if set
-string check_smoke_sensors(smoke_sensor s, ofstream o){
+string check_smoke_sensors(smoke_sensor s){
     string result = "";
     //MQh3
     if(s.MQ3() == 1){
-	result += "\t-MQ3 sensor is activated\n";
-	o << "3,";
+	cout << "\t-MQ3 sensor is activated\n";
+	result += "3,";
     }
     //MQ5
     if(s.MQ5() == 1){
-	result += "\t-MQ5 sensor is activated\n";
-	o << "5,";
+	cout << "\t-MQ5 sensor is activated\n";
+	result +="5,";
     }
     //MQ7
     if(s.MQ7() == 1){
-	result += "\t-MQ7 sensor is activated\n";
-    	o << "7,";
+	cout << "\t-MQ7 sensor is activated\n";
+    	result += "7,";
     }
     //flame
     if(s.flame() == 1){
-    	result += "\t-Flame detected\n";
-	o << "9";
+    	cout << "\t-Flame detected\n";
+	result += "9";
     }
     return result;
 }
@@ -61,7 +61,7 @@ int main(void)
     //Check smoke sensor;
     if(sensor_s.detection()){
 	cout << "Smoke sensor is activated" << '\n';
-        cout << check_smoke_sensors(sensor_s, output);
+        output << check_smoke_sensors(sensor_s);
 	output << "\n";
     }else output << "0\n";
     

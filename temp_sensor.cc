@@ -2,16 +2,15 @@
 //http://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
 //http://www.rpiblog.com/2012/11/interfacing-temperature-and-humidity.html
 
-class temp_sensor
-{
+using namespace std;
 
-    void temp_sensor(int given_pin)
+    temp_sensor::temp_sensor(int given_pin=4)
     {
-        
         pin = given_pin;
+        // sets current pin for temp sensor
     }
 
-    double get_temp()
+    double temp_sensor::get_temp()
     {
         //Code to read Temperature
 
@@ -26,9 +25,8 @@ class temp_sensor
 
         return 10;
     }
-    double get_humid()
+    double temp_sensor::get_humid()
     {
         //Code to read humidity
         return 17;
     }
-}

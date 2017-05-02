@@ -20,6 +20,7 @@ using namespace std;
    // int pin_MQ5 = 2;
    // int pin_MQ3 = 3;
    // int pin_flame = 5;
+   // int speaker = 1;
 
     int smoke_sensor::MQ7()
     {
@@ -54,8 +55,37 @@ using namespace std;
     bool smoke_sensor::detection()
     {
         int total = MQ7() + MQ5() + MQ3() + flame();
+
+        
+        if(( !(total == 0) ))
+            alert();
+            
         //cout << "total: " << total << "\n";
         // returns true if any sensor is triggered
         return ( !(total == 0) );
     }
 
+    //activates speakers to alarm sound
+    void smoke_sensor::alarm_on()
+    {
+        pinMode(1, PWM_OUTPUT);
+        pwmWrite  (1,512);
+        
+    }
+
+    void smoke_sensor::alarm_off()
+    {
+        pinMode(1, PWM_OUTPUT);
+        pwmWrite  (1,512);
+        
+    }
+
+    void smoke_sensor::alert()
+    {
+        for(int i = 0; i < 1000; i++)
+        {
+            alarm_on();
+            
+            alarm_off();
+        }
+    }

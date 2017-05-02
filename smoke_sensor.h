@@ -11,6 +11,9 @@ class smoke_sensor
         int MQ5();
         int MQ3();
         int flame();
+        void alert();
+        void alarm_on();
+        void alarm_off();        
     private:
         // ints to determine which pins is to which sensor
         // based on wiring pi numbers
@@ -18,4 +21,5 @@ class smoke_sensor
         int pin_MQ5;
         int pin_MQ3;
         int pin_flame;
+        int speaker;
 };//end class

@@ -17,22 +17,22 @@ string check_smoke_sensors(smoke_sensor s){
     if(s.MQ3() == 1){
 	cout << "\t-MQ3 sensor is activated\n";
 	result += "3,";
-    }
+    }else result += "0,";
     //MQ5
     if(s.MQ5() == 1){
 	cout << "\t-MQ5 sensor is activated\n";
 	result +="5,";
-    }
+    }else result += "0,";
     //MQ7
     if(s.MQ7() == 1){
 	cout << "\t-MQ7 sensor is activated\n";
     	result += "7,";
-    }
+    }else result +="0,";
     //flame
     if(s.flame() == 1){
     	cout << "\t-Flame detected\n";
 	result += "9";
-    }
+    }else result +="0";
     return result;
 }
 double get_temp(temp_sensor t){
@@ -63,7 +63,7 @@ int main(void)
 	cout << "Smoke sensor is activated" << '\n';
         output << check_smoke_sensors(sensor_s);
 	output << "\n";
-    }else output << "0\n";
+    }else output << "0,0,0,0\n";
     
     output.close();
     cout << " \n";
